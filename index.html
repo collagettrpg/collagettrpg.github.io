@@ -4,7 +4,6 @@
 	var converter = new showdown.Converter();
 	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/master/BlogPosts/"
 	$.get(urlblog+"2019-12-01.txt", function(data, status){
-    alert("Data: " + data + "\nStatus: " + status);
 	$("#outdiv").html(converter.makeHtml(data));
     },"text");
 </script>
