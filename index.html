@@ -24,9 +24,7 @@
 	var arrayLength = listboi.length;
 	linklist="<ul>";
 	for (var i = 0; i < arrayLength; i++) {
-		var hr=new URLSearchParams(window.location.search);
-		hr.set("post",listboi[i]);
-		linklist=linklist+'<li><a href='+"index.html"+"?"+decodeURIComponent(hr.toString())+'>'+listboi[i]+'</a></li>';
+		linklist=linklist+'<li><a href='+window.location.href.split('?')[0]+"?branch="+branch+"&volume="+volume+"&post="+listboi[i]+'>'+listboi[i]+'</a></li>';
 	}
 	$("#sidebar").html(linklist);
     },"text");

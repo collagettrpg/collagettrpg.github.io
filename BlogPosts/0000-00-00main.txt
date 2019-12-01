@@ -1,0 +1,12 @@
+#Landing Page
+
+This is the dev blog area of the collagettrpg Github Page.
+
+##Links of note:
+
+##Master
+[I'm an inline-style link](https://www.google.com)
+[I'm an inline-style link](https://www.google.com)
+[I'm an inline-style link](https://www.google.com)
+##WIP
+
