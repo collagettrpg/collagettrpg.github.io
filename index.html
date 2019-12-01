@@ -13,10 +13,22 @@
 	if(volume==null){volume = "BlogPosts"};
 	var converter = new showdown.Converter();
 	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/"+post+".txt";
-	alert(urlblog);
 	$("#urlhere").html(branch+"/"+volume+"/"+post);
 	$.get(urlblog, function(data, status){
 	$("#outdiv").html(converter.makeHtml(data));
+    },"text");
+    var urlmenu = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/Mapping/"+volume+".txt";
+    $.get(urlmenu, function(data, status){
+	var listboi = data.split("\n")
+	listboi.sort();
+	var arrayLength = listboi.length;
+	linklist="";
+	for (var i = 0; i < arrayLength; i++) {
+		var hr=JSON.parse(JSON.stringify(URLSearchParams));;
+		hr.set("post",listboi[i]+".txt")
+		linklist=linklist+'<a href='+hr.toString()+'>'+listboi[i]+'</a>\n';
+	}
+	$("#outdiv").html();
     },"text");
     
 })
