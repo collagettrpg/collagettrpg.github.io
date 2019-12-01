@@ -5,8 +5,6 @@ This is the dev blog area of the collagettrpg Github Page.
 ##Links of note:
 
 ##Master
-[I'm an inline-style link](https://www.google.com)
-[I'm an inline-style link](https://www.google.com)
-[I'm an inline-style link](https://www.google.com)
+[Main Page (Blog)](https://collagettrpg.github.io/index.html?branch=master&volume=BlogPosts&post=0000-00-00main)
 ##WIP
-
+[Main Page (Blog)](https://collagettrpg.github.io/index.html?branch=wip&volume=BlogPosts&post=0000-00-00main)
