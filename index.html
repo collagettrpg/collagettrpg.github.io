@@ -1,6 +1,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.0/dist/showdown.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
 <script>
+	window.addEventListener('load', function () {
+		
 	const urlParams = new URLSearchParams(window.location.search);
 	var post = urlParams.get('post');
 	if(post==null){post = "2019-12-01.txt"};
@@ -10,9 +13,28 @@
 	if(volume==null){volume = "BlogPosts"};
 	var converter = new showdown.Converter();
 	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/"+post;
+	alert(urlblog);
+	$("#urlhere").html(branch+"/"+volume+"/"+post);
 	$.get(urlblog, function(data, status){
 	$("#outdiv").html(converter.makeHtml(data));
     },"text");
+    
+})
 </script>
 
-<div id="outdiv"></div>
+<body>
+	<table style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;table-layout:fixed;">
+  <tr style="height:40px;">
+    <th style="width:25vw;">Sidebar</th>
+    <th style="width:75vw;" id="urlhere">a</th>
+  </tr>
+  <tr style="height:calc(100vh - 45px);">
+    <td style="vertical-align: top;text-align: left;"><div id="sidebar"></div></td>
+    <td><div id="outdiv"></div></td>
+  </tr>
+
+</table>
+
+
+</body>
+
