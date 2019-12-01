@@ -24,11 +24,11 @@
 	var arrayLength = listboi.length;
 	linklist="";
 	for (var i = 0; i < arrayLength; i++) {
-		var hr=JSON.parse(JSON.stringify(URLSearchParams));;
-		hr.set("post",listboi[i]+".txt")
-		linklist=linklist+'<a href='+hr.toString()+'>'+listboi[i]+'</a>\n';
+		var hr=new URLSearchParams(window.location.search);
+		hr.set("post",listboi[i]);
+		linklist=linklist+'<a href='+"index.html"+"?"+decodeURIComponent(hr.toString())+'>'+listboi[i]+'</a>\n';
 	}
-	$("#outdiv").html();
+	$("#sidebar").html(linklist);
     },"text");
     
 })
