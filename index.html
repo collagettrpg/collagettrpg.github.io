@@ -22,18 +22,22 @@
 	var listboi = data.split("\n")
 	listboi.sort();
 	var arrayLength = listboi.length;
-	linklist="";
+	linklist="<ul>";
 	for (var i = 0; i < arrayLength; i++) {
 		var hr=new URLSearchParams(window.location.search);
 		hr.set("post",listboi[i]);
-		linklist=linklist+'<a href='+"index.html"+"?"+decodeURIComponent(hr.toString())+'>'+listboi[i]+'</a>\n';
+		linklist=linklist+'<li><a href='+"index.html"+"?"+decodeURIComponent(hr.toString())+'>'+listboi[i]+'</a></li>';
 	}
 	$("#sidebar").html(linklist);
     },"text");
     
 })
 </script>
-
+<style>
+body{
+	font-family: 'Solway', serif;
+	}
+</style>
 <body>
 	<table style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;table-layout:fixed;">
   <tr style="height:40px;">
@@ -42,7 +46,7 @@
   </tr>
   <tr style="height:calc(100vh - 45px);">
     <td style="vertical-align: top;text-align: left;"><div id="sidebar"></div></td>
-    <td><div id="outdiv"></div></td>
+    <td style="vertical-align: top;text-align: left;overflow: scroll;"><div id="outdiv"></div></td>
   </tr>
 
 </table>
