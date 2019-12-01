@@ -1,9 +1,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.0/dist/showdown.min.js"></script>
 <script>
+	const urlParams = new URLSearchParams(window.location.search);
+	var post = urlParams.get('post');
+	if(post==null){post = "2019-12-01.txt"};
+	var branch = urlParams.get('branch');
+	if(branch==null){branch = "master"};
+	var volume = urlParams.get('volume');
+	if(volume==null){volume = "BlogPosts"};
 	var converter = new showdown.Converter();
-	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/master/BlogPosts/"
-	$.get(urlblog+"2019-12-01.txt", function(data, status){
+	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/"+post;
+	$.get(urlblog, function(data, status){
 	$("#outdiv").html(converter.makeHtml(data));
     },"text");
 </script>
