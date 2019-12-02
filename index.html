@@ -12,19 +12,21 @@
 	var volume = urlParams.get('volume');
 	if(volume==null){volume = "BlogPosts"};
 	var converter = new showdown.Converter();
-	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/"+post+".txt";
+	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/"+post+".md";
 	$("#urlhere").html(branch+"/"+volume+"/"+post);
+	$("masterLink").attr("href","https://collagettrpg.github.io?branch=master"+"&volume="+volume+"&post="+post);
+	$("wipLink").attr("href","https://collagettrpg.github.io?branch=wip"+"&volume="+volume+"&post="+post);
 	$.get(urlblog, function(data, status){
 	$("#outdiv").html(converter.makeHtml(data));
     },"text");
-    var urlmenu = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/Mapping/"+volume+".txt";
+    var urlmenu = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/Listing.txt";
     $.get(urlmenu, function(data, status){
 	var listboi = data.split("\n")
 	listboi.sort();
 	var arrayLength = listboi.length;
 	linklist="<ul>";
 	for (var i = 0; i < arrayLength; i++) {
-		linklist=linklist+'<li><a href='+window.location.href.split('?')[0]+"?branch="+branch+"&volume="+volume+"&post="+listboi[i]+'>'+listboi[i]+'</a></li>';
+		linklist=linklist+'<li><a href='+"https://collagettrpg.github.io?branch="+branch+"&volume="+volume+"&post="+listboi[i]+'>'+listboi[i]+'</a></li>';
 	}
 	$("#sidebar").html(linklist);
     },"text");
@@ -39,7 +41,7 @@ body{
 <body>
 	<table style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;table-layout:fixed;">
   <tr style="height:40px;">
-    <th style="width:25vw;">Sidebar</th>
+    <th style="width:25vw;"><a href="https://collagettrpg.github.io?branch=master" id="masterLink">Master</a> - <a href="https://collagettrpg.github.io?branch=wip" id="wipLink">WIP</a></th>
     <th style="width:75vw;" id="urlhere">a</th>
   </tr>
   <tr style="height:calc(100vh - 45px);">
