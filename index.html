@@ -10,13 +10,16 @@
 	var branch = urlParams.get('branch');
 	if(branch==null){branch = "master"};
 	var volume = urlParams.get('volume');
-	if(volume==null){volume = "BlogPosts"};
+	if(volume==null){volume = "Home"};
 	var converter = new showdown.Converter();
 	var urlblog = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/"+post+".md";
 	$("#urlhere").html(branch+"/"+volume+"/"+post);
 	$("masterLink").attr("href","https://collagettrpg.github.io?branch=master"+"&volume="+volume+"&post="+post);
 	$("wipLink").attr("href","https://collagettrpg.github.io?branch=wip"+"&volume="+volume+"&post="+post);
 	$.get(urlblog, function(data, status){
+		var datarepped = data.replace("&branch&", branch)
+		var datarepped = datarepped.replace("&volume&", volume)
+		var datarepped = datarepped.replace("&post&", post)
 	$("#outdiv").html(converter.makeHtml(data));
     },"text");
     var urlmenu = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/Listing.txt";
