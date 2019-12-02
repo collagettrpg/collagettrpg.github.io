@@ -3,7 +3,7 @@
 <link href="https://fonts.googleapis.com/css?family=Solway&display=swap" rel="stylesheet">
 <script>
 	window.addEventListener('load', function () {
-		
+	
 	const urlParams = new URLSearchParams(window.location.search);
 	var post = urlParams.get('post');
 	if(post==null){post = "0000-00-00main"};
@@ -22,19 +22,35 @@
 		var datarepped = datarepped.replace("&post&", post)
 	$("#outdiv").html(converter.makeHtml(data));
     },"text");
-    var urlmenu = "https://raw.githubusercontent.com/collagettrpg/collagettrpg.github.io/"+branch+"/"+volume+"/Listing.txt";
-    $.get(urlmenu, function(data, status){
-	var listboi = data.split("\n")
-	listboi.sort();
-	var arrayLength = listboi.length;
-	linklist="<ul>";
-	for (var i = 0; i < arrayLength; i++) {
-		linklist=linklist+'<li><a href='+"https://collagettrpg.github.io?branch="+branch+"&volume="+volume+"&post="+listboi[i]+'>'+listboi[i]+'</a></li>';
-	}
-	$("#sidebar").html(linklist);
+    
+    var titles = new Array(); 
+	$.ajax({
+    url: "https://api.github.com/repos/collagettrpg/collagettrpg.github.io/contents/Home",
+    success: function (data) {
+	
+	for(var i = 0; i < data.length; i++) {
+		titles.push(data[i].name);
+	}  
+	
+	titles.sort();
+	console.log(titles);
+	sidebar = "<ul>"
+	
+	for(var i = 0; i < titles.length; i++) {
+		console.log(titles[i]);
+		sidebar = sidebar + "<li><a href=https://collagettrpg.github.io?branch=master"+"&volume="+volume+"&post="+titles[i]+">"+titles[i]+"</a></li>";
+	}  
+	
+	sidebar = sidebar + "</ul>"
+	$("#sidebar").html(sidebar);
+	
+    }
+  });
+	
+
+    
     },"text");
     
-})
 </script>
 <style>
 body{
